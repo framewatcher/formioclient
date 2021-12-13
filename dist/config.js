@@ -1,5 +1,5 @@
 var APP_URL = 'http://10.250.4.177:3001';
-var API_URL = 'http://10.250.4.177:3001';
+var API_URL = 'http://10.250.4.177/:3001';
 
 // Parse query string
 var query = {};
