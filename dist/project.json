@@ -17,10 +17,6 @@
       "title": "Authenticated",
       "description": "A role for Authenticated Users."
     },
-    "newrole": {
-      "title": "New Role",
-      "description": "A role for new role."
-    },
     "anonymous": {
       "title": "Anonymous",
       "description": "A role for Anonymous Users.",

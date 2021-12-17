@@ -1,5 +1,5 @@
-var APP_URL = 'http://10.250.4.177:3001';
-var API_URL = 'http://10.250.4.177:3001';
+var APP_URL = 'https://example.form.io';
+var API_URL = 'https://api.form.io';
 
 // Parse query string
 var query = {};
@@ -15,7 +15,6 @@ angular.module('formioApp').constant('AppConfig', {
   apiUrl: apiUrl,
   forms: {
     userForm: appUrl + '/user',
-    homepage: appUrl + '/myhomepage',
     userLoginForm: appUrl + '/user/login'
   }
 });
