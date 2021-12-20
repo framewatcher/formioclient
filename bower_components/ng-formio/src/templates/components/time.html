@@ -1,0 +1,20 @@
+<input
+  time-format
+  type="{{ component.inputType }}"
+  class="form-control"
+  id="{{ componentId }}"
+  name="{{ componentId }}"
+  tabindex="{{ component.tabindex || 0 }}"
+  ng-disabled="readOnly"
+  aria-labelledby="{{ componentId +'Label'}}"
+  aria-describedby="{{componentId + 'Desc'}}"
+  ng-model="data[component.key]"
+  ng-model-options="{allowInvalid: true}"
+  safe-multiple-to-single
+  auto-focus="true"
+  ng-required="isRequired(component)"
+  ng-pattern="component.validate.pattern"
+  custom-validator="component.validate.custom"
+  ng-attr-placeholder="{{ component.placeholder | formioTranslate:null:options.building }}"
+  formio-custom-attributes="{{component.attributes}}"
+>

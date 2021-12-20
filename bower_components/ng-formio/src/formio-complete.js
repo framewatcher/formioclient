@@ -1,0 +1,12 @@
+require('ui-select/dist/select');
+require('angular-moment');
+require('angular-sanitize');
+require('angular-file-saver');
+require('ng-file-upload');
+require('bootstrap');
+require('angular-ui-bootstrap');
+require('angular-ckeditor-legacy');
+require('bootstrap-ui-datetime-picker/dist/datetime-picker');
+require('ng-dialog');
+require('angular-ui-ace/src/ui-ace');
+require('./formio');

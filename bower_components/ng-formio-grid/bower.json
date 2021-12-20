@@ -1,0 +1,36 @@
+{
+  "name": "ng-formio-grid",
+  "version": "1.4.2",
+  "authors": [
+    "Travis Tidwell <travis@form.io>"
+  ],
+  "main": "dist/ng-formio-grid.js",
+  "description": "The Form.IO form renderer.",
+  "keywords": [
+    "angularjs",
+    "ionic",
+    "form"
+  ],
+  "dependencies": {
+    "angular": "^1.7.2",
+    "angular-sanitize": "^1.7.2",
+    "angular-ui-grid": "^4.5.1",
+    "ng-formio": "^2.35.5"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "overrides": {
+    "angular-ui-grid": {
+      "main": [
+        "ui-grid.css",
+        "ui-grid.js"
+      ]
+    }
+  }
+}

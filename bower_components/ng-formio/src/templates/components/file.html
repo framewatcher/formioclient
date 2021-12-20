@@ -1,0 +1,56 @@
+<label ng-if="labelVisible() && (component.labelPosition !== 'bottom')" for="{{ componentId }}" class="control-label" ng-class="{'field-required': isRequired(component)}" ng-style="getLabelStyles(component)">
+  {{ component.label | formioTranslate:null:options.building }}
+  <formio-component-tooltip></formio-component-tooltip>
+</label>
+<span ng-if="!component.label && isRequired(component)" class="glyphicon glyphicon-asterisk form-control-feedback field-required-inline" aria-hidden="true"></span>
+<div class="formio-errors"><formio-errors ng-if="::!options.building"></formio-errors></div>
+<div ng-controller="formioFileUpload" ng-style="getInputGroupStyles(component)">
+  <formio-file-list files="data[component.key]" form="formio.formUrl" ng-if="!component.image" ng-required="isRequired(component)" validate-items-length ng-model="data[component.key]" ng-model-options="{allowInvalid: true}" name="{{ componentId }}" read-only="readOnly"></formio-file-list>
+  <formio-image-list files="data[component.key]" form="formio.formUrl" width="component.imageSize" ng-if="component.image" validate-items-length ng-required="isRequired(component)" ng-model="data[component.key]" ng-model-options="{allowInvalid: true}" name="{{ componentId }}" read-only="readOnly"></formio-image-list>
+  <div ng-if="!readOnly && (component.multiple || (!component.multiple && !data[component.key].length))">
+    <div ngf-drop="upload($files, $invalidFiles)"
+      class="fileSelector"
+      ngf-drag-over-class="'fileDragOver'"
+      ngf-pattern="component.filePattern"
+      ngf-min-size="component.fileMinSize"
+      ngf-max-size="component.fileMaxSize"
+      ngf-multiple="component.multiple"
+      id="{{ componentId }}"
+      name="{{ componentId }}">
+      <span class="glyphicon glyphicon-cloud-upload"></span>Drop files to attach, or
+      <a style="cursor: pointer;"
+        ng-keypress="browseKeyPress($event)"
+        ng-attr-id="{{component.key}}-browse"
+        ngf-select="upload($files, $invalidFiles)"
+        tabindex="{{ component.tabindex || 0 }}"
+        ngf-pattern="component.filePattern"
+        ngf-min-size="component.fileMinSize"
+        ngf-max-size="component.fileMaxSize"
+        ngf-multiple="component.multiple">browse</a>.
+    </div>
+    <div ng-if="!component.storage" class="alert alert-warning">No storage has been set for this field. File uploads are disabled until storage is set up.</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+  </div>
+  <div ng-repeat="fileUpload in fileUploads track by $index" ng-class="{'has-error': fileUpload.status === 'error'}" class="file">
+    <div class="row">
+      <div class="fileName control-label col-sm-10">{{ fileUpload.originalName || fileUpload.name }} <span ng-click="removeUpload(fileUpload.name)" class="glyphicon glyphicon-remove"></span></div>
+      <div class="fileSize control-label col-sm-2 text-right">{{ fileSize(fileUpload.size) }}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span ng-if="fileUpload.status === 'progress'">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{fileUpload.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{fileUpload.progress}}%">
+              <span class="sr-only">{{fileUpload.progress}}% Complete</span>
+            </div>
+          </div>
+        </span>
+        <div ng-if="!fileUpload.status !== 'progress'" class="bg-{{ fileUpload.status }} control-label">{{ fileUpload.message }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<label ng-if="labelVisible() && (component.labelPosition === 'bottom')" for="{{ componentId }}" class="control-label control-label--bottom" ng-class="{'field-required': isRequired(component)}">
+  {{ component.label | formioTranslate:null:options.building }}
+  <formio-component-tooltip></formio-component-tooltip>
+</label>

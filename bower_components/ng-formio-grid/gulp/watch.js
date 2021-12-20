@@ -1,0 +1,22 @@
+var path = require('path');
+module.exports = function(gulp, plugins) {
+  return function() {
+    var bundle = plugins.browserify({
+      entries: './src/formio-grid.js',
+      debug: true
+    });
+
+    var build = require('./scripts')(gulp, plugins, bundle);
+    bundle = plugins.watchify(bundle);
+    bundle.on('update', function(files) {
+      console.log('Changed files: ', files.map(path.relative.bind(path, process.cwd())).join(', '));
+      console.log('Rebuilding dist/formio-grid.js...');
+      build();
+    });
+    bundle.on('log', function(msg) {
+      console.log(msg);
+    });
+
+    return build();
+  };
+};
